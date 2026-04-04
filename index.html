@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Calendar, BookOpen, ExternalLink, Sparkles, Moon, Sun, Leaf, ArrowRight, Instagram, Mail, Award, Wind, MessageCircle, Clock, MapPin, Zap } from 'lucide-react';
+import { 
+  Menu, X, Calendar, BookOpen, ExternalLink, Sparkles, 
+  Moon, Sun, Leaf, ArrowRight, Instagram, Mail, 
+  Award, Wind, MessageCircle, Clock, MapPin, Zap 
+} from 'lucide-react';
 
 const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -101,7 +105,12 @@ const App = () => {
       <nav className={`fixed w-full z-50 transition-all duration-700 ${scrolled ? 'bg-[#0D1A13]/95 backdrop-blur-xl py-3 shadow-2xl border-b border-[#C5A059]/20' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-4 group cursor-pointer">
-             <img src="品牌字 無背景-1.png" alt="Oliver Logo" className={`h-10 transition-all duration-500 ${scrolled ? 'brightness-100 scale-95' : 'brightness-0 invert'}`} />
+             <img 
+               src="品牌字 無背景-1.png" 
+               alt="Oliver Logo" 
+               className={`h-10 transition-all duration-500 ${scrolled ? 'brightness-100 scale-95' : 'brightness-0 invert'}`} 
+               onError={(e) => { e.target.style.display = 'none'; }}
+             />
           </div>
           
           <div className="hidden md:flex items-center gap-10">
@@ -147,14 +156,19 @@ const App = () => {
         <div className="relative z-10 text-center px-6 max-w-5xl">
           <div className="mb-12 inline-block relative">
              <div className="w-44 h-44 md:w-60 md:h-60 mx-auto rounded-full border border-[#C5A059]/40 p-3 bg-gradient-to-b from-[#C5A059]/10 to-transparent">
-                <img src="OliverLOGO-03.jpg" alt="Oliver Logo Mark" className="w-full h-full rounded-full object-cover border border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.3)]" />
+                <img 
+                  src="OliverLOGO-03.jpg" 
+                  alt="Oliver Logo Mark" 
+                  className="w-full h-full rounded-full object-cover border border-[#C5A059] shadow-[0_0_30px_rgba(197,160,89,0.3)]"
+                  onError={(e) => { e.target.src = "https://via.placeholder.com/200/1A2F23/C5A059?text=Oliver"; }}
+                />
              </div>
              <LeafDecoration className="absolute -top-8 -right-8 w-20 h-20 text-[#C5A059]/40 rotate-45" />
              <LeafDecoration className="absolute -bottom-8 -left-8 w-20 h-20 text-[#C5A059]/40 -rotate-135" />
           </div>
           
           <div className="relative inline-block mb-8">
-            <h1 className="text-5xl md:text-8xl font-classical text-white tracking-[0.25em] italic">
+            <h1 className="text-5xl md:text-8xl font-classical text-white tracking-[0.25em] italic uppercase">
               OLIVER <span className="text-[#C5A059]">ASTROLOGER</span>
             </h1>
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent"></div>
@@ -191,7 +205,8 @@ const App = () => {
               <img 
                 src="EADCC771-ADC8-4451-A259-D8BD60D1A346.jpg" 
                 alt="Oliver 個人形象照片" 
-                className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000" 
+                className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
+                onError={(e) => { e.target.src = "https://via.placeholder.com/600x800/1A2F23/C5A059?text=Oliver+Portrait"; }}
               />
             </div>
             <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-[#C5A059]/40 rounded-tl-2xl"></div>
@@ -213,18 +228,24 @@ const App = () => {
                 綜合古典與現代不同流派占星學，我擅長西洋占星、塔羅占卜、流年運勢與牌卡解讀。致力於透過星盤中的微光，引導人們看見生命的無限可能。
               </p>
               
-              <div className="p-8 bg-white/40 rounded-2xl border-l-2 border-[#C5A059]/30">
-                <h4 className="text-[#1A2F23] font-semibold mb-4 tracking-wider flex items-center gap-2">
-                  <Sparkles size={18} className="text-[#C5A059]" /> 專業領域與修習
+              <div className="p-8 bg-white/40 rounded-3xl border-l-2 border-[#C5A059]/30 shadow-sm">
+                <h4 className="text-[#1A2F23] font-semibold mb-6 tracking-wider flex items-center gap-2 underline underline-offset-8 decoration-[#C5A059]/30">
+                  <Sparkles size={18} className="text-[#C5A059]" /> 專業資歷與研習
                 </h4>
-                <ul className="space-y-3 text-lg">
-                  <li><span className="text-[#C5A059] font-medium">靈氣導師：</span>西洋臼井靈氣三階、卡魯那靈氣二階、現代靈氣極意皆傳、直傳靈氣初階。</li>
-                  <li><span className="text-[#C5A059] font-medium">植物療癒：</span>美國 NAHA 芳療 Level 1 認證，深耕藥草魔法與自然能量研究。</li>
-                </ul>
+                <div className="space-y-4 text-lg">
+                  <div>
+                    <span className="text-[#C5A059] font-medium block mb-1 italic tracking-widest">能量療癒 • 靈氣導師</span>
+                    <p className="text-gray-600">西洋臼井靈氣三階、卡魯那靈氣二階、現代靈氣極意皆傳、直傳靈氣初階。</p>
+                  </div>
+                  <div>
+                    <span className="text-[#C5A059] font-medium block mb-1 italic tracking-widest">植物智慧 • 自然魔法</span>
+                    <p className="text-gray-600">美國 NAHA 芳療 Level 1 認證，深耕藥草魔法與植物能量研究。</p>
+                  </div>
+                </div>
               </div>
 
               <p>
-                我致力於將能量工作的靜心品質帶入占星諮詢，提供全方位的靈魂療癒指南。
+                我致力於將能量工作的靜心品質帶入占星諮詢，提供全方位的靈魂療癒建議，協助您在忙碌世界中重新與大地、與星辰連結。
               </p>
               
               <div className="relative mt-8 p-10 bg-white/50 backdrop-blur-sm border border-[#C5A059]/10 rounded-3xl group overflow-hidden">
@@ -315,7 +336,12 @@ const App = () => {
             </div>
           </div>
           <div className="lg:w-1/2 h-[500px] lg:h-[700px] relative group overflow-hidden">
-             <img src="OliverLOGO-04.jpg" alt="Brand Aesthetics" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms]" />
+             <img 
+               src="OliverLOGO-04.jpg" 
+               alt="Brand Aesthetics" 
+               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
+               onError={(e) => { e.target.src = "https://via.placeholder.com/800/1A2F23/C5A059?text=Alchemia+Sine+Fine"; }}
+             />
              <div className="absolute inset-0 bg-gradient-to-r from-[#1A2F23] via-transparent to-transparent"></div>
           </div>
         </div>
@@ -327,7 +353,12 @@ const App = () => {
         
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-24 relative z-10">
           <div className="max-w-md">
-            <img src="品牌字 無背景-1.png" alt="Oliver Logo" className="h-14 mb-10 brightness-110" />
+            <img 
+              src="品牌字 無背景-1.png" 
+              alt="Oliver Logo" 
+              className="h-14 mb-10 brightness-110"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
             <p className="text-gray-400 font-light leading-relaxed mb-10 text-xl italic">
               結合古典與現代占星的智慧，在自然的脈動中，協助您找回靈魂的韻律。
             </p>
