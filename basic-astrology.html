@@ -60,14 +60,18 @@
     <div class="fixed top-1/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
     <div class="fixed top-2/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
 
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <!-- 返回首頁按鈕 (懸浮於左上角) -->
+    <a href="/" class="fixed top-6 left-4 md:left-8 z-50 flex items-center gap-2 text-astro-gold/70 hover:text-astro-gold transition-colors duration-300 font-serif tracking-widest text-sm backdrop-blur-md bg-astro-dark/50 px-5 py-2.5 rounded-full border border-astro-gold/20 hover:border-astro-gold/60 shadow-[0_0_15px_rgba(209,179,123,0.05)]">
+        <span class="text-lg leading-none mb-0.5">←</span> 返回首頁
+    </a>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-10 md:mt-0">
 
         <!-- Header / Hero Section (參照第一張海報) -->
         <header class="flex flex-col items-center text-center mb-32 relative">
             
             <!-- Banner 圖片區塊 -->
             <div class="w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-astro-gold/20 shadow-[0_0_40px_rgba(209,179,123,0.15)] mb-16 relative">
-                <!-- 註解：預覽時暫時使用線上圖片。上傳至 GitHub 時，請將 src 改回 "course-banner.jpg" -->
                 <img src="方格子.png" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/151a22/d1b37b?text=[Image+of+課程主視覺]'" alt="課程主視覺" class="w-full h-[35vh] md:h-[45vh] object-cover opacity-90 transition-opacity duration-700 hover:opacity-100">
                 <!-- 底部漸層，讓圖片與深色背景自然融合 -->
                 <div class="absolute inset-0 bg-gradient-to-t from-astro-dark via-transparent to-transparent opacity-90 pointer-events-none"></div>
