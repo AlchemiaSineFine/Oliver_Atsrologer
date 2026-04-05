@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>現代占星基礎篇 - Oliver 現代占星師</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'astro-dark': '#151a22',     /* 深藏青色背景 */
+                        'astro-gold': '#d1b37b',     /* 主標題與線條的金色 */
+                        'astro-light': '#e5e7eb',    /* 副標題亮色 */
+                        'astro-gray': '#9ca3af',     /* 內文灰色 */
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #151a22;
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            color: #e5e7eb;
+        }
+        
+        /* 裝飾性星星符號 */
+        .sparkle::before {
+            content: "✦";
+            color: #d1b37b;
+            margin-right: 0.5rem;
+            font-size: 0.9em;
+        }
+        .sparkle-after::after {
+            content: "✦";
+            color: #d1b37b;
+            margin-left: 0.5rem;
+            font-size: 0.9em;
+        }
+
+        /* 背景連線動畫效果 (模擬海報上的星座線) */
+        .constellation-line {
+            position: absolute;
+            background-color: rgba(209, 179, 123, 0.2);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-astro-gold selection:text-astro-dark">
+
+    <!-- 裝飾性背景線條 -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-px h-full bg-astro-gold/10 z-0 hidden md:block"></div>
+    <div class="fixed top-1/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
+    <div class="fixed top-2/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
+        <!-- Header / Hero Section (參照第一張海報) -->
+        <header class="flex flex-col items-center text-center mb-32 relative">
+            
+            <!-- Banner 圖片區塊 -->
+            <div class="w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-astro-gold/20 shadow-[0_0_40px_rgba(209,179,123,0.15)] mb-16 relative">
+                <!-- 註解：預覽時暫時使用線上圖片。上傳至 GitHub 時，請將 src 改回 "course-banner.jpg" -->
+                <img src="方格子.png" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/151a22/d1b37b?text=[Image+of+課程主視覺]'" alt="課程主視覺" class="w-full h-[35vh] md:h-[45vh] object-cover opacity-90 transition-opacity duration-700 hover:opacity-100">
+                <!-- 底部漸層，讓圖片與深色背景自然融合 -->
+                <div class="absolute inset-0 bg-gradient-to-t from-astro-dark via-transparent to-transparent opacity-90 pointer-events-none"></div>
+            </div>
+
+            <p class="text-astro-gold font-serif tracking-[0.4em] text-sm md:text-base mb-6 uppercase">Modern Astrology Basics</p>
+            <h1 class="text-6xl md:text-8xl font-serif text-astro-light tracking-[0.2em] mb-4 ml-[0.2em]">
+                現代占星
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-serif text-astro-gold tracking-[0.3em] ml-[0.3em] mb-12">
+                基礎篇
+            </h2>
+
+            <!-- 講師資訊區 (已移除照片，保留精簡署名) -->
+            <div class="flex flex-col items-center">
+                <h3 class="text-xl font-serif text-astro-light tracking-widest"><span class="text-astro-gold text-lg mr-2">Oliver</span> 現代占星師</h3>
+                <div class="flex items-center gap-2 mt-4 text-astro-gold/50">
+                    <span class="text-xl">✧</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Course Modules (參照第二張海報) -->
+        <main class="space-y-32">
+
+            <!-- Module I -->
+            <section class="relative group">
+                <!-- Title Block -->
+                <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
+                        現代占星基礎篇 <span class="text-astro-gold mx-2">|</span> <span class="text-astro-gold">星座</span>
+                    </h3>
+                    <p class="text-astro-gray font-serif tracking-[0.2em] text-lg">「 十二原型與靈魂風格 」</p>
+                </div>
+                
+                <!-- Content Block -->
+                <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
+                    <!-- Image -->
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
+                        <img src="PIC1.png" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=[Image+of+星座原型]'" alt="星座原型" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <!-- Text & Numeral -->
+                    <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
+                        <!-- Mobile Numeral (Moved slightly for better text flow) -->
+                        <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">I</div>
+                        
+                        <div class="flex-grow flex flex-col justify-center md:pr-10 pb-8 md:pb-0 text-left space-y-5 px-4 md:px-0">
+                            <p class="text-astro-gray font-light leading-relaxed tracking-wider text-justify">
+                                現代占星學中，星座並非只是娛樂雜誌上的性格標籤，而是靈魂演化的十二種原型能量。我們將從四元素（火、土、風、水）與三模式（開創、固定、變動）的基礎開始，深入剖析每一個星座的核心驅動力。你會了解為什麼同為火象星座，牡羊、獅子、射手的展現方式與面對生命課題的態度卻截然不同？
+                            </p>
+                            
+                            <div class="space-y-3 pt-2">
+                                <h4 class="text-astro-gold font-serif tracking-widest text-lg flex items-center gap-2"><span class="text-sm">✦</span> 課程重點</h4>
+                                <ul class="text-astro-gray font-light leading-relaxed tracking-wider list-none space-y-2 pl-2">
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">破除大眾對星座的刻板印象，掌握十二星座的深層心理機制。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">熟練運用「四元素」評估星盤中能量的平衡與失衡狀態。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">透過「三模式」理解一個人的行動策略與面對生命轉折的反應。</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-astro-gold/5 border border-astro-gold/20 p-5 rounded-md mt-6 shadow-[inset_0_0_20px_rgba(209,179,123,0.02)] backdrop-blur-sm">
+                                <h4 class="text-astro-light font-serif tracking-widest text-md mb-3">學完本模組，你將獲得的收穫：</h4>
+                                <p class="text-astro-gray font-light leading-relaxed tracking-wider text-sm md:text-base text-justify">
+                                    你將不再依賴死記硬背的占星關鍵字，而是能以直覺且具備邏輯的方式，精準捕捉一個人的能量特質。你能看懂自己與他人是如何「存在於這個世界」，並學會欣賞每種靈魂風格的獨特之處，為後續更進階的星盤解讀打下最堅實的幾何基礎。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden md:flex flex-col items-center justify-start pt-10 pl-10 border-l border-astro-gold/30 shrink-0">
+                            <span class="text-8xl lg:text-9xl font-serif text-astro-gold opacity-90">I</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module II -->
+            <section class="relative group">
+                <!-- Title Block -->
+                <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
+                        現代占星基礎篇 <span class="text-astro-gold mx-2">|</span> <span class="text-astro-gold">行星</span>
+                    </h3>
+                    <p class="text-astro-gray font-serif tracking-[0.2em] text-lg">「 內在動力與心理需求 」</p>
+                </div>
+                
+                <!-- Content Block -->
+                <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
+                        <img src="PIC2.png" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=[Image+of+行星動力]'" alt="行星動力" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
+                        <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">II</div>
+                        
+                        <div class="flex-grow flex flex-col justify-center md:pr-10 pb-8 md:pb-0 text-left space-y-5 px-4 md:px-0">
+                            <p class="text-astro-gray font-light leading-relaxed tracking-wider text-justify">
+                                如果星座是我們穿上的外衣，那麼「行星」就是隱藏在外衣底下，真正驅動我們思考、感受與行動的內在器官。在這個模組中，我們將系統性地探討個人行星（日、月、水、金、火）如何形塑自我認同與情感需求；接著探討社會行星（木、土）帶來的擴張與生命考驗；最後觸及外行星（天、海、冥）所象徵的集體潛意識與靈魂轉化力量。
+                            </p>
+                            
+                            <div class="space-y-3 pt-2">
+                                <h4 class="text-astro-gold font-serif tracking-widest text-lg flex items-center gap-2"><span class="text-sm">✦</span> 課程重點</h4>
+                                <ul class="text-astro-gray font-light leading-relaxed tracking-wider list-none space-y-2 pl-2">
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">深刻理解十大行星的心理學意涵及其在日常體驗中的真實對應。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">掌握太陽與月亮的陰陽交互作用，找回內在真實的安全感與生命力。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">解析金星與火星的動力，看懂關係中的吸引力法則與個人邊界設定。</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-astro-gold/5 border border-astro-gold/20 p-5 rounded-md mt-6 shadow-[inset_0_0_20px_rgba(209,179,123,0.02)] backdrop-blur-sm">
+                                <h4 class="text-astro-light font-serif tracking-widest text-md mb-3">學完本模組，你將獲得的收穫：</h4>
+                                <p class="text-astro-gray font-light leading-relaxed tracking-wider text-sm md:text-base text-justify">
+                                    你將學會把星盤上的行星視為自己內在的「次人格」。透過理解這些行星的需求，你能看清自己為何在某些時刻會產生內在衝突（例如理智上想前進，情緒上卻想逃避），進而學會如何健康地滿足這些心理渴望，不再將自身的陰影與課題投射到外界或他人身上。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:flex flex-col items-center justify-start pt-10 pl-10 border-l border-astro-gold/30 shrink-0">
+                            <span class="text-8xl lg:text-9xl font-serif text-astro-gold opacity-90">II</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module III -->
+            <section class="relative group">
+                <!-- Title Block -->
+                <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
+                        現代占星基礎篇 <span class="text-astro-gold mx-2">|</span> <span class="text-astro-gold">宮位</span>
+                    </h3>
+                    <p class="text-astro-gray font-serif tracking-[0.2em] text-lg">「 人生場域與命運舞台 」</p>
+                </div>
+                
+                <!-- Content Block -->
+                <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
+                        <img src="PIC3.png" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=[Image+of+宮位場域]'" alt="宮位場域" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
+                        <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">III</div>
+                        
+                        <div class="flex-grow flex flex-col justify-center md:pr-10 pb-8 md:pb-0 text-left space-y-5 px-4 md:px-0">
+                            <p class="text-astro-gray font-light leading-relaxed tracking-wider text-justify">
+                                了解了行星（演員）與星座（服裝風格）後，我們需要一個舞台讓人生劇本真實上演——這就是「宮位」。宮位代表了生命的十二個核心場域，從第一宮的自我形象，到第七宮的伴侶關係、第十宮的事業成就。我們也將特別著重於星盤的四個重要軸線（ASC、IC、DSC、MC），它們是支撐起整個人生結構與靈魂定位的骨架。
+                            </p>
+                            
+                            <div class="space-y-3 pt-2">
+                                <h4 class="text-astro-gold font-serif tracking-widest text-lg flex items-center gap-2"><span class="text-sm">✦</span> 課程重點</h4>
+                                <ul class="text-astro-gray font-light leading-relaxed tracking-wider list-none space-y-2 pl-2">
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">建立十二宮位的立體架構，看懂從個人發展、人際互動到集體貢獻的演進脈絡。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">解析星盤四軸線（上升、下降、天底、天頂）在生命週期中扮演的關鍵角色。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">看懂星盤中空宮（無行星落入）或群星聚集（Stellium）的真實意義與能量流向。</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-astro-gold/5 border border-astro-gold/20 p-5 rounded-md mt-6 shadow-[inset_0_0_20px_rgba(209,179,123,0.02)] backdrop-blur-sm">
+                                <h4 class="text-astro-light font-serif tracking-widest text-md mb-3">學完本模組，你將獲得的收穫：</h4>
+                                <p class="text-astro-gray font-light leading-relaxed tracking-wider text-sm md:text-base text-justify">
+                                    你能清楚定位生命事件發生的「場域」。當你或客戶面臨事業瓶頸、感情困擾或原生家庭的糾葛時，你能迅速在星盤中找到對應的宮位，洞悉該領域的潛在挑戰與可用資源。你將深刻明白，人生中沒有絕對的幸與不幸，只有不同領域的專屬功課與天賦禮物。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:flex flex-col items-center justify-start pt-10 pl-10 border-l border-astro-gold/30 shrink-0">
+                            <span class="text-8xl lg:text-9xl font-serif text-astro-gold opacity-90">III</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Module IV -->
+            <section class="relative group">
+                <!-- Title Block -->
+                <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
+                    <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
+                        現代占星基礎篇 <span class="text-astro-gold mx-2">|</span> <span class="text-astro-gold">相位與解盤</span>
+                    </h3>
+                    <p class="text-astro-gray font-serif tracking-[0.2em] text-lg">「 能量互動與星盤整合 」</p>
+                </div>
+                
+                <!-- Content Block -->
+                <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
+                        <img src="PIC4.png" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=[Image+of+相位整合]'" alt="相位整合" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
+                        <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">IV</div>
+                        
+                        <div class="flex-grow flex flex-col justify-center md:pr-10 pb-8 md:pb-0 text-left space-y-5 px-4 md:px-0">
+                            <p class="text-astro-gray font-light leading-relaxed tracking-wider text-justify">
+                                一張星盤要能成為有生命力的故事，關鍵在於「相位」。相位揭示了我們內在各個心理面向（行星）是如何互動的——是攜手合作，還是互相拉扯？這是初學者最容易卡關，卻也是解盤最精華的所在。我們將深入解析五大主要相位，並帶入實際的星盤案例，教你整合前面所學的所有元素。
+                            </p>
+                            
+                            <div class="space-y-3 pt-2">
+                                <h4 class="text-astro-gold font-serif tracking-widest text-lg flex items-center gap-2"><span class="text-sm">✦</span> 課程重點</h4>
+                                <ul class="text-astro-gray font-light leading-relaxed tracking-wider list-none space-y-2 pl-2">
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">掌握五大相位（合相、三分相、六分相、四分相、對分相）的幾何結構與能量動力。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">學習「行星 + 星座 + 宮位 + 相位」的綜合解盤公式與思考邏輯。</li>
+                                    <li class="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-[10px] before:w-1.5 before:h-1.5 before:bg-astro-gold/60 before:rounded-full">拆解星盤中的困難相位（如刑剋），發掘其中隱藏的突破與成長契機。</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-astro-gold/5 border border-astro-gold/20 p-5 rounded-md mt-6 shadow-[inset_0_0_20px_rgba(209,179,123,0.02)] backdrop-blur-sm">
+                                <h4 class="text-astro-light font-serif tracking-widest text-md mb-3">學完本模組，你將獲得的收穫：</h4>
+                                <p class="text-astro-gray font-light leading-relaxed tracking-wider text-sm md:text-base text-justify">
+                                    這是將所有知識融會貫通的階段。你將具備獨立解讀本命星盤的能力，不再只能看著單點的配置發呆。你將學會從一張星盤中，精準找出一個人的核心人生劇本、重複發生的生命模式，以及最重要的——如何引導星盤主人將困難相位的張力，轉化為成就自我的巨大動能。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="hidden md:flex flex-col items-center justify-start pt-10 pl-10 border-l border-astro-gold/30 shrink-0">
+                            <span class="text-8xl lg:text-9xl font-serif text-astro-gold opacity-90">IV</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer / Bonus Section (參照第一張海報下方) -->
+        <footer class="mt-40 border-t border-astro-gold/20 pt-16 flex flex-col items-center text-center relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-astro-dark px-4">
+                <div class="w-6 h-8 border border-astro-gold rounded-t-full flex items-center justify-center">
+                    <div class="w-2 h-2 bg-astro-gold rounded-full mt-2"></div>
+                </div>
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-serif text-astro-light tracking-[0.3em] mb-4">
+                四堂全上
+            </h2>
+            <p class="text-astro-gray font-serif tracking-widest text-lg md:text-xl sparkle sparkle-after">
+                贈送課後一對一互動式星盤導讀。
+            </p>
+            
+            <div class="mt-16 flex items-center gap-4 text-astro-gray/50">
+                <span class="text-2xl">⬡</span>
+                <p class="font-serif tracking-widest text-sm uppercase">Oliver Astrologer</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
