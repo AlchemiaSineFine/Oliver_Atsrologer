@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星骰占卜工作坊課程詳情 | OLIVER ASTROLOGER</title>
+    
+    <!-- 導入字體：Cinzel (占星標準), Cormorant Garamond (優雅裝飾), Noto Serif TC (專業宋體), Montserrat (現代內文) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300&family=Noto+Serif+TC:wght@300;500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --gold: #c4a484;
+            --dark-bg: #14181f; 
+            --paper-texture: rgba(255, 255, 255, 0.02);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: #d1d5db;
+            scroll-behavior: smooth;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* 紙質紋理背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* 強制宋體類別 - 確保不受 Tailwind 預設干擾 */
+        .font-song {
+            font-family: 'Noto Serif TC', serif !important;
+            font-weight: 700;
+        }
+        
+        .font-song-light {
+            font-family: 'Noto Serif TC', serif !important;
+            font-weight: 300;
+        }
+
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+
+        /* 標題直排樣式 */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: 'Noto Serif TC', serif !important;
+            font-weight: 700;
+        }
+
+        /* 金色線條裝飾 */
+        .gold-line {
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            width: 1px;
+        }
+
+        /* 羅馬數字 */
+        .roman-num {
+            font-family: 'Cinzel', serif;
+            font-size: 5rem;
+            color: rgba(196, 164, 132, 0.12);
+            line-height: 1;
+            font-weight: 400;
+        }
+
+        /* 圓形裁切 */
+        .circle-mask {
+            border-radius: 50%;
+            border: 1px solid rgba(196, 164, 132, 0.4);
+            padding: 6px;
+            overflow: hidden;
+            display: inline-block;
+            background: rgba(20, 24, 31, 0.8);
+        }
+
+        /* 揭示動畫 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-gold {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .btn-gold:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- 頂部導航 -->
+    <nav class="sticky top-0 w-full z-50 bg-[#14181f]/90 backdrop-blur-md py-5 border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 text-[10px] tracking-[0.4em] font-bold text-[#c4a484] hover:text-white transition-all group font-cinzel">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                BACK TO HOME
+            </a>
+            <div class="hidden md:block">
+                <span class="text-[9px] tracking-[0.6em] text-white/30 uppercase font-cinzel">Astro Dice Divination Course Details</span>
+            </div>
+            <a href="#booking" class="btn-gold rounded-full">
+                ENROLL NOW
+            </a>
+        </div>
+    </nav>
+
+    <!-- 標題區塊 -->
+    <header class="relative pt-24 pb-20 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start gap-16">
+            
+            <!-- 左側直排標題 -->
+            <div class="relative flex flex-col items-center">
+                <div class="gold-line h-40 mb-8"></div>
+                <h1 class="vertical-text text-6xl md:text-7xl font-song text-white tracking-[0.25em] leading-none">
+                    星骰占卜
+                </h1>
+                <div class="mt-10 text-center md:text-left">
+                    <p class="font-cinzel text-[#c4a484] tracking-[0.5em] text-[11px] font-bold uppercase mb-3">Astro Dice Workshop</p>
+                    <p class="font-song-light text-xl text-white/50 tracking-[0.4em]">完整一日課程</p>
+                </div>
+            </div>
+
+            <!-- 右側引言 -->
+            <div class="flex-grow pt-12 md:pt-44">
+                <div class="max-w-2xl">
+                    <p class="text-xl text-gray-300 font-song-light leading-[2.2] mb-12 tracking-[0.12em]">
+                        占星骰子是一套結合<span class="text-[#c4a484] font-song">「行星 × 星座 × 宮位」</span>的直覺占卜工具，能在日常中為自己與他人帶來清晰的方向指引。這是一堂結合基礎占星教學、占卜實作、個案演練的完整一日課程，適合初學者，也適合靈性療癒工作者精進指引力。
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <div class="circle-mask w-16 h-16 flex-shrink-0">
+                            <img src="PRO.jpg" alt="Oliver" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                        <div>
+                            <p class="text-white font-song tracking-[0.3em] text-sm">現代占星師 Oliver</p>
+                            <p class="text-[9px] text-[#c4a484] tracking-[0.4em] font-cinzel uppercase mt-1">Modern Astrologer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 裝飾幾何 -->
+            <div class="absolute top-1/2 right-[-5%] -translate-y-1/2 opacity-10 hidden lg:block pointer-events-none">
+                <svg width="600" height="600" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="#c4a484" stroke-width="0.05" />
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#c4a484" stroke-width="0.02" stroke-dasharray="0.5,0.5" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- 課程內容 -->
+    <section id="course" class="py-32 border-t border-white/5 bg-black/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-24 text-center md:text-left">
+                <h2 class="text-4xl font-song text-white tracking-[0.3em] mb-3">課程內容</h2>
+                <p class="text-[10px] tracking-[0.6em] text-[#c4a484] font-cinzel uppercase">Detailed Curriculum</p>
+            </div>
+
+            <div class="space-y-40">
+                <!-- 模組 I -->
+                <div class="reveal flex flex-col md:flex-row gap-16 items-start">
+                    <div class="roman-num">I</div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
+                            <div class="circle-mask w-28 h-28">
+                                <img src="_MG_1847.jpg" class="w-full h-full object-cover" alt="Basics">
+                            </div>
+                            <h3 class="text-3xl font-song text-white tracking-[0.2em]">占星核心理論</h3>
+                        </div>
+                        <p class="text-[#c4a484] text-[11px] tracking-[0.5em] mb-6 font-cinzel uppercase">Decoding Planets & Signs</p>
+                        <p class="text-gray-400 text-sm leading-[2] max-w-2xl font-light tracking-widest">
+                            深入淺出地解構占星學三大基石。我們不只是背誦關鍵字，而是透過直覺連結，理解能量如何在日常生活中運作，為占卜奠定紮實的理論基礎。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 模組 II -->
+                <div class="reveal flex flex-col md:flex-row gap-16 items-start">
+                    <div class="roman-num">II</div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
+                            <div class="circle-mask w-28 h-28">
+                                <img src="dice01.jpg" class="w-full h-full object-cover" alt="Practice">
+                            </div>
+                            <h3 class="text-3xl font-song text-white tracking-[0.2em]">直覺解碼實作</h3>
+                        </div>
+                        <p class="text-[#c4a484] text-[11px] tracking-[0.5em] mb-6 font-cinzel uppercase">Intuitive Interpretation</p>
+                        <p class="text-gray-400 text-sm leading-[2] max-w-2xl font-light tracking-widest">
+                            學習如何將三顆骰子的隨機組合轉換為清晰的指引。掌握「情境設定」與「關鍵字串聯」技巧，讓你在面對各種複雜問題時，都能給出精確的洞察。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 模組 III -->
+                <div class="reveal flex flex-col md:flex-row gap-16 items-start">
+                    <div class="roman-num">III</div>
+                    <div class="flex-grow">
+                        <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
+                            <div class="circle-mask w-28 h-28">
+                                <img src="dice1.png" class="w-full h-full object-cover" alt="Cases">
+                            </div>
+                            <h3 class="text-3xl font-song text-white tracking-[0.2em]">真實個案演練</h3>
+                        </div>
+                        <p class="text-[#c4a484] text-[11px] tracking-[0.5em] mb-6 font-cinzel uppercase">Case Study & Guidance</p>
+                        <p class="text-gray-400 text-sm leading-[2] max-w-2xl font-light tracking-widest">
+                            課程中將進行大量的個案練習，模擬真實諮詢情境。透過導師現場指導，調整解讀細節，培養靈敏的指引力，讓你課後即具備對外服務的能力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 適合對象 -->
+    <section id="about" class="py-32 bg-[#1a1f26]">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-24">
+            <div>
+                <h3 class="text-2xl font-song text-white tracking-[0.2em] mb-12 pb-5 border-b border-white/10">這堂課適合對象</h3>
+                <ul class="space-y-10">
+                    <li class="flex items-start gap-5 group">
+                        <span class="text-[#c4a484] font-cinzel text-lg opacity-40">/</span> 
+                        <span class="text-sm text-gray-300 tracking-[0.15em] font-light leading-relaxed group-hover:text-[#c4a484] transition-colors">對占星有興趣，卻不知從哪開始的人</span>
+                    </li>
+                    <li class="flex items-start gap-5 group">
+                        <span class="text-[#c4a484] font-cinzel text-lg opacity-40">/</span> 
+                        <span class="text-sm text-gray-300 tracking-[0.15em] font-light leading-relaxed group-hover:text-[#c4a484] transition-colors">想學會一種直覺快速、靈性深層的占卜工具</span>
+                    </li>
+                    <li class="flex items-start gap-5 group">
+                        <span class="text-[#c4a484] font-cinzel text-lg opacity-40">/</span> 
+                        <span class="text-sm text-gray-300 tracking-[0.15em] font-light leading-relaxed group-hover:text-[#c4a484] transition-colors">渴望在生活中找到更清晰的自我指引</span>
+                    </li>
+                    <li class="flex items-start gap-5 group">
+                        <span class="text-[#c4a484] font-cinzel text-lg opacity-40">/</span> 
+                        <span class="text-sm text-gray-300 tracking-[0.15em] font-light leading-relaxed group-hover:text-[#c4a484] transition-colors">想在靈性療癒工作中精進指引力的工作者</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-song text-white tracking-[0.2em] mb-12 pb-5 border-b border-white/10">課程學習收穫</h3>
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="p-8 bg-black/20 border border-white/5 hover:border-[#c4a484]/30 transition-all group">
+                        <p class="text-[#c4a484] font-cinzel text-xl mb-4 group-hover:scale-110 transition-transform">01</p>
+                        <p class="text-[11px] text-white tracking-[0.3em] font-song-light">核心理論基礎</p>
+                    </div>
+                    <div class="p-8 bg-black/20 border border-white/5 hover:border-[#c4a484]/30 transition-all group">
+                        <p class="text-[#c4a484] font-cinzel text-xl mb-4 group-hover:scale-110 transition-transform">02</p>
+                        <p class="text-[11px] text-white tracking-[0.3em] font-song-light">實戰解碼邏輯</p>
+                    </div>
+                    <div class="p-8 bg-black/20 border border-white/5 hover:border-[#c4a484]/30 transition-all group">
+                        <p class="text-[#c4a484] font-cinzel text-xl mb-4 group-hover:scale-110 transition-transform">03</p>
+                        <p class="text-[11px] text-white tracking-[0.3em] font-song-light">課後諮詢指導</p>
+                    </div>
+                    <div class="p-8 bg-black/20 border border-white/5 hover:border-[#c4a484]/30 transition-all group">
+                        <p class="text-[#c4a484] font-cinzel text-xl mb-4 group-hover:scale-110 transition-transform">04</p>
+                        <p class="text-[11px] text-white tracking-[0.3em] font-song-light">個案演練實證</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 報名資訊 -->
+    <section id="booking" class="py-40 text-center relative">
+        <div class="max-w-3xl mx-auto px-6 relative z-10">
+            <p class="font-cinzel text-[#c4a484] tracking-[0.8em] text-[10px] font-bold mb-8 uppercase">Celestial Whispers</p>
+            <h2 class="text-4xl md:text-5xl font-song text-white mb-16 tracking-[0.4em] leading-relaxed">聽見星空的耳語</h2>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-10 mb-20">
+                <a href="https://forms.gle/c2KDXmctnuZo6DcD8" target="_blank" class="btn-gold !px-16 !py-6 text-sm">BOOK TAIWAN</a>
+                <a href="https://forms.gle/PTTdJSDU6Gpc5DdEA" target="_blank" class="border border-white/10 text-white/50 px-16 py-6 font-cinzel tracking-[0.4em] text-sm hover:text-white hover:border-white transition-all">GLOBAL TOUR</a>
+            </div>
+            
+            <div class="flex items-center justify-center gap-6 opacity-30">
+                <div class="h-[1px] w-12 bg-white"></div>
+                <p class="text-[9px] tracking-[0.6em] text-white uppercase font-cinzel">Taipei ｜ Taichung ｜ Kaohsiung ｜ Malaysia</p>
+                <div class="h-[1px] w-12 bg-white"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 border-t border-white/5 text-center bg-[#0d1014]">
+        <p class="text-[9px] tracking-[0.5em] text-white/20 font-cinzel uppercase">© 2024 Oliver Astrologer. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 初始化圖標
+        lucide.createIcons();
+
+        // 滾動揭示邏輯
+        const reveal = () => {
+            const elements = document.querySelectorAll(".reveal");
+            elements.forEach((el) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
+                }
+            });
+        };
+
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>
