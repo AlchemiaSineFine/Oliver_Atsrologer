@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服務說明 | 占星師 Oliver</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        
+        :root {
+            --primary-gold: #C5A059;
+            --brand-dark: #0D1A13;
+            --light-bg: #F4F1EA;
+        }
+
+        .font-classical { font-family: 'Playfair Display', serif; }
+        .font-serif-elegant { font-family: 'Cormorant Garamond', serif; }
+        .font-body { font-family: 'Noto Sans TC', sans-serif; }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Cormorant Garamond', "Noto Sans TC", serif;
+            background-color: var(--light-bg);
+            color: #333333;
+            overflow-x: hidden;
+            selection-background-color: var(--primary-gold);
+            selection-color: white;
+        }
+
+        /* 導覽列滾動效果 */
+        .nav-scrolled {
+            background-color: rgba(13, 26, 19, 0.95);
+            backdrop-filter: blur(24px);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .nav-scrolled .nav-link { color: #D1D5DB !important; }
+
+        /* 滑動動畫核心 CSS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active, .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+    </style>
+</head>
+<body class="selection:bg-[#C5A059] selection:text-white">
+
+    <!-- Navigation (連結回首頁對應區塊) -->
+    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-700 py-6 bg-[#0D1A13]/90 backdrop-blur-md border-b border-[#C5A059]/20 nav-scrolled">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                <img src="品牌字%20無背景-1.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="this.style.opacity='0'">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10">
+                <a href="index.html#關於" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">關於</a>
+                <a href="services.html" class="nav-link text-[#C5A059] text-sm tracking-[0.3em] font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:bg-[#C5A059]">服務說明</a>
+                <a href="index.html#課程介紹" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程介紹</a>
+                <a href="index.html#文章專欄" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">文章專欄</a>
+                <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程預約</a>
+            </div>
+
+            <button class="md:hidden text-[#C5A059] p-2" id="mobileMenuBtn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0D1A13] p-6 absolute top-full left-0 w-full border-b border-[#C5A059]/20 flex flex-col gap-6 text-center shadow-2xl">
+             <a href="index.html#關於" class="text-white tracking-widest menu-close">關於 Oliver</a>
+             <a href="services.html" class="text-[#C5A059] tracking-widest menu-close">服務說明</a>
+             <a href="index.html#課程介紹" class="text-white tracking-widest menu-close">課程介紹</a>
+             <a href="index.html#文章專欄" class="text-white tracking-widest menu-close">文章專欄</a>
+             <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="text-white tracking-widest menu-close">近期課程報名</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="pt-40 pb-20 bg-[#0D1A13] text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+            <div class="w-[60%] h-[150%] border border-[#C5A059] rounded-[40%] animate-[spin_60s_linear_infinite]"></div>
+            <div class="w-[70%] h-[160%] border border-[#C5A059] rounded-[30%] animate-[spin_40s_linear_infinite_reverse] absolute"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 reveal">
+            <span class="text-[#C5A059] tracking-[0.5em] text-sm font-bold uppercase mb-4 block">Our Services & Offerings</span>
+            <h1 class="text-4xl md:text-6xl font-classical text-[#E5D1A0] tracking-widest italic mb-6">服務詳細說明</h1>
+            <p class="text-gray-400 font-serif-elegant text-lg leading-relaxed max-w-2xl mx-auto">
+                每一次的對話，都是為了讓你的靈魂更靠近真實的自己。<br>
+                了解我們的各項服務細節，選擇最適合你當下狀態的療癒與指引。
+            </p>
+        </div>
+    </header>
+
+    <!-- Service 1: 占星本命盤 -->
+    <section class="py-24 px-6 bg-[#F4F1EA]">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-white rounded-[3rem] p-10 lg:p-16 shadow-xl border border-[#C5A059]/20 flex flex-col lg:flex-row gap-12 items-center reveal">
+                <div class="lg:w-1/3 flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-[#0D1A13] rounded-full flex items-center justify-center mb-6 shadow-lg shadow-[#C5A059]/20">
+                        <i data-lucide="sun" class="w-10 h-10 text-[#C5A059]"></i>
+                    </div>
+                    <h2 class="text-3xl font-classical text-[#1A2F23] mb-2">占星本命盤</h2>
+                    <span class="text-[#C5A059] tracking-widest text-sm font-bold uppercase mb-6">Natal Chart Reading</span>
+                    <a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="px-8 py-3 bg-[#1A2F23] text-white rounded-full text-sm tracking-widest font-semibold hover:bg-[#C5A059] transition-all w-full md:w-auto">立即預約</a>
+                </div>
+                <div class="lg:w-2/3 border-t lg:border-t-0 lg:border-l border-gray-100 pt-8 lg:pt-0 lg:pl-12 font-serif-elegant">
+                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                        本命盤是靈魂在投生地球時拍下的一張宇宙快照，記錄了你與生俱來的天賦、性格、人生挑戰與潛能。透過深度的解析，我們將協助你看見自己的原廠設定，不再為生命的迷惘感到焦慮，而是學會如何善用宇宙給予你的武器。
+                    </p>
+                    <div class="bg-[#F9F7F2] p-6 rounded-2xl mb-8 border border-[#C5A059]/10">
+                        <h4 class="font-bold text-[#1A2F23] mb-3 flex items-center gap-2"><i data-lucide="target" class="w-4 h-4 text-[#C5A059]"></i> 適合對象</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed">對自己的性格感到矛盾、正面臨人生重大轉折、想要了解適合的職業方向、想探究感情與人際關係模式，或是單純想要更深入認識自己的人。</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end border-b border-gray-100 pb-3">
+                            <div>
+                                <h5 class="text-lg font-bold text-[#1A2F23]">線上深度解讀 <span class="text-xs text-white bg-[#C5A059] px-2 py-1 rounded ml-2 font-body font-normal">推薦</span></h5>
+                                <p class="text-sm text-gray-500 mt-1">1.5小時 / 語音或視訊對談 (請提供2-3個方便的時段)</p>
+                            </div>
+                            <span class="text-[#C5A059] font-classical text-xl">NT$ 3,600</span>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-gray-100 pb-3">
+                            <div>
+                                <h5 class="text-lg font-bold text-[#1A2F23]">電子報告書</h5>
+                                <p class="text-sm text-gray-500 mt-1">一份完整排版的個人專屬星盤文字分析報告 PDF</p>
+                            </div>
+                            <span class="text-[#C5A059] font-classical text-xl">NT$ 2,000</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h5 class="text-lg font-bold text-[#1A2F23]">線上解讀 + 電子報告書組合</h5>
+                                <p class="text-sm text-gray-500 mt-1">深度對談後，將獲得書面報告供日後反覆閱讀</p>
+                            </div>
+                            <span class="text-[#C5A059] font-classical text-xl">NT$ 4,800</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 2: 流年運勢 -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-[#F4F1EA] rounded-[3rem] p-10 lg:p-16 shadow-lg border border-[#C5A059]/10 flex flex-col lg:flex-row-reverse gap-12 items-center reveal">
+                <div class="lg:w-1/3 flex flex-col items-center text-center">
+                    <div class="w-24 h-24 bg-[#0D1A13] rounded-full flex items-center justify-center mb-6 shadow-lg shadow-[#C5A059]/20">
+                        <i data-lucide="moon" class="w-10 h-10 text-[#C5A059]"></i>
+                    </div>
+                    <h2 class="text-3xl font-classical text-[#1A2F23] mb-2">流年運勢服務</h2>
+                    <span class="text-[#C5A059] tracking-widest text-sm font-bold uppercase mb-6">Yearly Forecast</span>
+                    <a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="px-8 py-3 border border-[#1A2F23] text-[#1A2F23] rounded-full text-sm tracking-widest font-semibold hover:bg-[#1A2F23] hover:text-white transition-all w-full md:w-auto">預約流年解析</a>
+                </div>
+                <div class="lg:w-2/3 border-t lg:border-t-0 lg:border-r border-[#C5A059]/20 pt-8 lg:pt-0 lg:pr-12 font-serif-elegant">
+                    <p class="text-gray-700 leading-relaxed text-lg mb-6">
+                        隨著天上行星的移動，宇宙的能量流動會對我們產生不同的影響。流年解析將重點放在未來一年的大環境趨勢與個人機遇，幫助你提前做好準備，知道何時該踩油門衝刺，何時該放慢腳步沉潛。
+                    </p>
+                    <div class="bg-white p-6 rounded-2xl mb-8 border border-gray-100">
+                        <h4 class="font-bold text-[#1A2F23] mb-3 flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-[#C5A059]"></i> 諮詢重點</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed">分析未來一年內重要的星象移轉、可能遇到的機會與挑戰領域（如事業升遷、感情變化、投資理財等），並給予客觀的行動建議。</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end border-b border-[#C5A059]/10 pb-3">
+                            <div>
+                                <h5 class="text-lg font-bold text-[#1A2F23]">年度運勢解讀</h5>
+                                <p class="text-sm text-gray-500 mt-1">45-60分鐘線上解析 / 觀測未來一年行運</p>
+                            </div>
+                            <span class="text-[#C5A059] font-classical text-xl">NT$ 2,000</span>
+                        </div>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <h5 class="text-lg font-bold text-[#1A2F23]">老客戶年度回訪優惠</h5>
+                                <p class="text-sm text-gray-500 mt-1">限定曾於本處解讀過「本命盤」之客戶</p>
+                            </div>
+                            <span class="text-[#C5A059] font-classical text-xl">NT$ 1,500</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service 3 & 4: 靈氣與神諭 -->
+    <section class="py-24 px-6 bg-[#0D1A13] text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-[#C5A059] max-w-4xl" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 0L52 48L100 50L52 52L50 100L48 52L0 50L48 48Z" fill="currentColor"/></svg>
+        </div>
+        
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 relative z-10">
+            
+            <!-- 靈氣療癒 -->
+            <div class="bg-[#1A2F23] p-10 lg:p-12 rounded-[2.5rem] border border-[#C5A059]/20 reveal-left">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 bg-[#0D1A13] rounded-full flex items-center justify-center shadow-lg border border-[#C5A059]/30">
+                        <i data-lucide="wind" class="w-8 h-8 text-[#C5A059]"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-classical text-[#E5D1A0]">靈氣療癒服務</h2>
+                        <span class="text-gray-400 text-xs tracking-widest uppercase">Reiki Healing</span>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-base leading-relaxed mb-8 font-serif-elegant">
+                    靈氣是一種安全、溫和的自然能量療法。作為療癒師，我將作為通道，將宇宙的純粹能量傳遞給你，幫助清理脈輪阻塞、釋放長期累積的壓力與負面情緒，讓身心靈回歸平衡狀態。
+                </p>
+                <div class="space-y-4 mb-10 font-serif-elegant">
+                    <div class="flex justify-between items-end border-b border-gray-600 pb-3">
+                        <div>
+                            <h5 class="text-lg font-bold text-white">實體療癒</h5>
+                            <p class="text-sm text-gray-400 mt-1">60-90分鐘 / 深度放鬆與能量平衡</p>
+                        </div>
+                        <span class="text-[#C5A059] font-classical text-xl">NT$ 1,500</span>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h5 class="text-lg font-bold text-white">遠距療癒</h5>
+                            <p class="text-sm text-gray-400 mt-1">45-60分鐘 / 跨越空間限制的平靜體驗</p>
+                        </div>
+                        <span class="text-[#C5A059] font-classical text-xl">NT$ 1,000</span>
+                    </div>
+                </div>
+                <a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="block text-center px-8 py-3 bg-[#C5A059] text-[#0D1A13] rounded-full text-sm tracking-widest font-bold hover:bg-white transition-all">預約靈氣療癒</a>
+            </div>
+
+            <!-- 神諭占卜 -->
+            <div class="bg-[#1A2F23] p-10 lg:p-12 rounded-[2.5rem] border border-[#C5A059]/20 reveal-right flex flex-col">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 bg-[#0D1A13] rounded-full flex items-center justify-center shadow-lg border border-[#C5A059]/30">
+                        <i data-lucide="sparkles" class="w-8 h-8 text-[#C5A059]"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-classical text-[#E5D1A0]">神諭塔羅占卜</h2>
+                        <span class="text-gray-400 text-xs tracking-widest uppercase">Oracle, Tarot & Dice Reading</span>
+                    </div>
+                </div>
+                <p class="text-gray-300 text-base leading-relaxed mb-8 font-serif-elegant flex-grow">
+                    與看整體生命格局的星盤不同，占卜更適合解決「當下」的具體困惑。我將綜合運用<strong>塔羅牌</strong>的深層心理投射、<strong>神諭卡</strong>的靈性溫柔指引，以及<strong>占星骰</strong>的精準定位，為你解開眼前的迷惘。不論是感情抉擇、工作難題，還是人際關係的卡關，這些工具能如實反映你的潛意識狀態，並給予最清晰的行動建議與方向。
+                </p>
+                <div class="space-y-4 mb-10 font-serif-elegant">
+                    <div class="flex justify-between items-end border-b border-gray-600 pb-3">
+                        <div>
+                            <h5 class="text-lg font-bold text-white">標準諮詢</h5>
+                            <p class="text-sm text-gray-400 mt-1">30分鐘 / 針對具體事件進行深入抽牌與解析</p>
+                        </div>
+                        <span class="text-[#C5A059] font-classical text-xl">NT$ 500</span>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <h5 class="text-lg font-bold text-white">超時費用</h5>
+                            <p class="text-sm text-gray-400 mt-1">若問題較多需延長，以每10分鐘為單位計費</p>
+                        </div>
+                        <span class="text-[#C5A059] font-classical text-xl">NT$ 200 / 10m</span>
+                    </div>
+                </div>
+                <a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="block text-center px-8 py-3 bg-[#C5A059] text-[#0D1A13] rounded-full text-sm tracking-widest font-bold hover:bg-white transition-all">預約占卜諮詢</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Booking Info FAQ -->
+    <section class="py-24 px-6 bg-[#F4F1EA]">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-classical text-[#1A2F23] tracking-widest italic mb-4">預約與諮詢須知</h2>
+                <div class="w-16 h-1 bg-[#C5A059] mx-auto"></div>
+            </div>
+
+            <div class="space-y-6 font-serif-elegant">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 reveal delay-100">
+                    <h4 class="text-xl font-bold text-[#1A2F23] mb-3 flex items-center gap-2">
+                        <i data-lucide="clock" class="w-5 h-5 text-[#C5A059]"></i> 關於出生時間的要求
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        進行「占星本命盤」與「流年運勢」諮詢，必須提供精確的出生時間（精確至分鐘），以及出生城市（如：台北市、高雄市）。若不確定具體時間，建議可至戶政事務所申請出生證明。時間的準確度會直接影響星盤宮位與上升星座的判斷。
+                    </p>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 reveal delay-200">
+                    <h4 class="text-xl font-bold text-[#1A2F23] mb-3 flex items-center gap-2">
+                        <i data-lucide="video" class="w-5 h-5 text-[#C5A059]"></i> 線上諮詢進行方式
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        線上諮詢主要透過 Google Meet 或 Line 語音進行。諮詢過程中建議您處於安靜、不受打擾的空間。諮詢內容允許自行錄音存檔，但請勿公開發佈。
+                    </p>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 reveal delay-300">
+                    <h4 class="text-xl font-bold text-[#1A2F23] mb-3 flex items-center gap-2">
+                        <i data-lucide="alert-circle" class="w-5 h-5 text-[#C5A059]"></i> 更改時間與取消政策
+                    </h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        完成付款後即視為預約成功。若需更改諮詢時間，請於原訂時間的 48 小時前透過官方 LINE 告知，每人限更改一次。24 小時內臨時取消將酌收 30% 手續費。
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center reveal">
+                 <a href="https://lin.ee/ZpfHhvF" target="_blank" class="inline-flex items-center gap-2 text-[#C5A059] border-b border-[#C5A059] pb-1 hover:text-[#1A2F23] hover:border-[#1A2F23] transition-all tracking-widest font-bold text-sm">
+                    有其他問題嗎？點擊加入官方 LINE 詢問 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0D1A13] text-white pt-24 pb-12 px-6 font-serif-elegant border-t border-[#C5A059]/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-2 space-y-8 text-center md:text-left">
+                    <img src="品牌字%20無背景-1.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="this.style.display='none'">
+                    <p class="text-gray-400 max-w-sm leading-loose mx-auto md:mx-0 font-body font-light">
+                        將占星學轉化為可落實於生活的指引，<br>
+                        在宇宙的脈動中，找回屬於你的節奏。
+                    </p>
+                </div>
+                <div class="space-y-6 text-center md:text-left">
+                    <h4 class="text-[#C5A059] tracking-widest uppercase text-sm font-bold font-body">快速導覽</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-body font-light">
+                        <li><a href="index.html#關於" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">關於 Oliver</a></li>
+                        <li><a href="services.html" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">服務項目</a></li>
+                        <li><a href="index.html#課程介紹" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">課程介紹</a></li>
+                        <li><a href="index.html#文章專欄" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">文章專欄</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6 text-center md:text-left">
+                    <h4 class="text-[#C5A059] tracking-widest uppercase text-sm font-bold font-body">聯絡及預約</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-body font-light flex flex-col items-center md:items-start">
+                        <li><a href="https://www.instagram.com/oliver_astrologer/?hl=zh-tw" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="instagram" class="w-4 h-4 text-[#C5A059]"></i> IG 官方帳號</a></li>
+                        <li><a href="https://lin.ee/ZpfHhvF" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="message-circle" class="w-4 h-4 text-[#C5A059]"></i> 官方 LINE</a></li>
+                        <li><a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="calendar-days" class="w-4 h-4 text-[#C5A059]"></i> 預約表單</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#C5A059]/10 pt-10 text-center">
+                <p class="text-gray-600 text-[10px] tracking-[0.4em] uppercase font-body">© 2025 Oliver Soul Astrologer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // 行動版選單切換
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 滑動動畫監聽器
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
