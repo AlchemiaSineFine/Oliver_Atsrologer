@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>過往活動經歷 | 占星師 Oliver</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+        
+        :root {
+            --primary-gold: #C5A059;
+            --brand-dark: #0D1A13;
+            --light-bg: #F4F1EA;
+        }
+
+        .font-classical { font-family: 'Playfair Display', serif; }
+        .font-serif-elegant { font-family: 'Cormorant Garamond', serif; }
+        .font-body { font-family: 'Noto Sans TC', sans-serif; }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Cormorant Garamond', "Noto Sans TC", serif;
+            background-color: var(--light-bg);
+            color: #333333;
+            overflow-x: hidden;
+            selection-background-color: var(--primary-gold);
+            selection-color: white;
+        }
+
+        /* 導覽列滾動效果 */
+        .nav-scrolled {
+            background-color: rgba(13, 26, 19, 0.95);
+            backdrop-filter: blur(24px);
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .nav-scrolled .nav-link { color: #D1D5DB !important; }
+
+        /* 滑動動畫核心 CSS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active, .reveal-left.active, .reveal-right.active {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    </style>
+</head>
+<body class="selection:bg-[#C5A059] selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-700 py-6 bg-[#0D1A13]/90 backdrop-blur-md border-b border-[#C5A059]/20 nav-scrolled">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
+                <img src="品牌字%20無背景-1.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="this.style.opacity='0'">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-10">
+                <a href="index.html#關於" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">關於</a>
+                <a href="services.html" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">服務項目</a>
+                <a href="events.html" class="nav-link text-[#C5A059] text-sm tracking-[0.3em] font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:bg-[#C5A059]">活動經歷</a>
+                <a href="index.html#課程介紹" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程介紹</a>
+                <a href="index.html#文章專欄" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">文章專欄</a>
+                <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程預約</a>
+            </div>
+
+            <button class="md:hidden text-[#C5A059] p-2" id="mobileMenuBtn">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#0D1A13] p-6 absolute top-full left-0 w-full border-b border-[#C5A059]/20 flex flex-col gap-6 text-center shadow-2xl">
+             <a href="index.html#關於" class="text-white tracking-widest menu-close">關於 Oliver</a>
+             <a href="services.html" class="text-white tracking-widest menu-close">服務項目</a>
+             <a href="events.html" class="text-[#C5A059] tracking-widest menu-close">活動經歷</a>
+             <a href="index.html#課程介紹" class="text-white tracking-widest menu-close">課程介紹</a>
+             <a href="index.html#文章專欄" class="text-white tracking-widest menu-close">文章專欄</a>
+             <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="text-white tracking-widest menu-close">近期課程報名</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="pt-40 pb-20 bg-[#0D1A13] text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+            <div class="w-[60%] h-[150%] border border-[#C5A059] rounded-[40%] animate-[spin_60s_linear_infinite]"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 reveal">
+            <span class="text-[#C5A059] tracking-[0.5em] text-sm font-bold uppercase mb-4 block">Past Events & Footprints</span>
+            <h1 class="text-4xl md:text-6xl font-classical text-[#E5D1A0] tracking-widest italic mb-6">過往活動經歷</h1>
+            <p class="text-gray-400 font-serif-elegant text-lg leading-relaxed max-w-2xl mx-auto">
+                在不同的空間與城市裡，透過占星、牌卡與靈氣，<br>
+                記錄下每一次與靈魂相遇的療癒片刻。
+            </p>
+        </div>
+    </header>
+
+    <!-- Events Timeline Section -->
+    <section class="py-24 px-6 bg-[#F4F1EA]">
+        <div class="max-w-6xl mx-auto space-y-24">
+
+            <!-- Event 1: SOL靈性生活節 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 w-full reveal-left">
+                    <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
+                        <img src="event-sol.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=SOL靈性生活節'">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full space-y-6 reveal-right">
+                    <span class="text-[#C5A059] tracking-widest font-bold text-sm uppercase">Festival Event</span>
+                    <h3 class="text-3xl lg:text-4xl font-classical text-[#1A2F23]">SOL靈性生活節<br/><span class="text-2xl mt-2 block font-body font-normal">占卜擺攤活動花絮</span></h3>
+                    <p class="text-gray-600 leading-relaxed font-serif-elegant text-lg">
+                        在充滿靈性與療癒氛圍的 SOL 靈性生活節中，透過神諭卡、塔羅牌與占星骰子，為許多參與者提供當下的指引。每一次的抽牌與對話，都在熱鬧的市集裡建立起一方安靜、溫暖的靈魂棲息地，協助大家看見自己內心的聲音。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event 2: 占星課程教學 -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 w-full reveal-right">
+                    <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
+                        <img src="event-class.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=占星課程教學'">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full space-y-6 reveal-left">
+                    <span class="text-[#C5A059] tracking-widest font-bold text-sm uppercase">Workshop & Teaching</span>
+                    <h3 class="text-3xl lg:text-4xl font-classical text-[#1A2F23]">占星課程教學<br/><span class="text-2xl mt-2 block font-body font-normal">帶領學員走入星空</span></h3>
+                    <p class="text-gray-600 leading-relaxed font-serif-elegant text-lg">
+                        從基礎的行星、星座、宮位，到相位解析的進階課程，透過有系統的教學與小班制的互動，帶領學員一步步拆解星盤的密碼。看著學生們從懵懂到能夠解析自己與他人的生命藍圖，是傳遞占星智慧最感動的時刻。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event 3: 馬來西亞-靈癒空間 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 w-full reveal-left">
+                    <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
+                        <img src="event-malaysia.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=馬來西亞-靈癒空間'">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full space-y-6 reveal-right">
+                    <span class="text-[#C5A059] tracking-widest font-bold text-sm uppercase">Overseas Event</span>
+                    <h3 class="text-3xl lg:text-4xl font-classical text-[#1A2F23]">馬來西亞 - 靈癒空間<br/><span class="text-2xl mt-2 block font-body font-normal">跨越國界的占卜擺攤</span></h3>
+                    <p class="text-gray-600 leading-relaxed font-serif-elegant text-lg">
+                        將占星與牌卡的療癒能量帶到馬來西亞的「靈癒空間」。在這次特別的海外擺攤經驗中，深刻感受到不同文化背景下的靈魂，都有著相似的課題與迷惘。藉由星辰的通用語言，完成了跨越國界與距離的深刻連結。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event 4: 各市集擺攤 -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 w-full reveal-right">
+                    <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
+                        <img src="event-market.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=各市集擺攤紀錄'">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full space-y-6 reveal-left">
+                    <span class="text-[#C5A059] tracking-widest font-bold text-sm uppercase">Market Pop-up</span>
+                    <h3 class="text-3xl lg:text-4xl font-classical text-[#1A2F23]">各市集擺攤紀錄<br/><span class="text-2xl mt-2 block font-body font-normal">街頭的相遇與指引</span></h3>
+                    <p class="text-gray-600 leading-relaxed font-serif-elegant text-lg">
+                        參與過多場在地特色市集，在人來人往的熱鬧街頭佈置一方靜謐的占卜桌。市集擺攤往往充滿隨機與驚喜，每一次坐下的客人，都是宇宙精妙的安排，透過短暫的 15 到 30 分鐘，提供他們前行的勇氣與清晰的方向。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Event 5: 駐點占卜-沐憩 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 w-full reveal-left">
+                    <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
+                        <img src="event-muqi.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=駐點占卜-沐憩'">
+                    </div>
+                </div>
+                <div class="lg:w-1/2 w-full space-y-6 reveal-right">
+                    <span class="text-[#C5A059] tracking-widest font-bold text-sm uppercase">Resident Divination</span>
+                    <h3 class="text-3xl lg:text-4xl font-classical text-[#1A2F23]">駐點占卜合作<br/><span class="text-2xl mt-2 block font-body font-normal">沐憩身體保養所</span></h3>
+                    <p class="text-gray-600 leading-relaxed font-serif-elegant text-lg">
+                        身心本是一體。與「沐憩身體保養所」的駐點合作，將身體的舒壓保養與靈魂的占星療癒完美結合。在令人放鬆的空間裡，讓客人在釋放身體疲憊的同時，也能透過牌卡與星盤，卸下心裡的重擔。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-24 px-6 bg-white text-center">
+        <div class="max-w-3xl mx-auto reveal">
+            <h3 class="text-3xl font-classical text-[#1A2F23] mb-6 tracking-widest italic">邀請合作與預約諮詢</h3>
+            <p class="text-gray-600 font-serif-elegant text-lg mb-10 leading-relaxed">
+                無論是市集擺攤邀請、品牌駐點合作，或是個人深度的星盤與牌卡解析，都歡迎與我們聯繫，讓療癒的能量進入更多人的生命中。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="https://lin.ee/ZpfHhvF" target="_blank" class="px-10 py-3 bg-[#0D1A13] text-white rounded-full tracking-widest text-sm font-semibold hover:bg-[#C5A059] transition-all">活動合作洽詢 (LINE)</a>
+                <a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="px-10 py-3 border border-[#1A2F23] text-[#1A2F23] rounded-full tracking-widest text-sm font-semibold hover:bg-[#1A2F23] hover:text-white transition-all">預約個人諮詢</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0D1A13] text-white pt-24 pb-12 px-6 font-serif-elegant border-t border-[#C5A059]/20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-2 space-y-8 text-center md:text-left">
+                    <img src="品牌字%20無背景-1.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="this.style.display='none'">
+                    <p class="text-gray-400 max-w-sm leading-loose mx-auto md:mx-0 font-body font-light">
+                        將占星學轉化為可落實於生活的指引，<br>
+                        在宇宙的脈動中，找回屬於你的節奏。
+                    </p>
+                </div>
+                <div class="space-y-6 text-center md:text-left">
+                    <h4 class="text-[#C5A059] tracking-widest uppercase text-sm font-bold font-body">快速導覽</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-body font-light">
+                        <li><a href="index.html#關於" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">關於 Oliver</a></li>
+                        <li><a href="services.html" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">服務項目</a></li>
+                        <li><a href="events.html" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">活動經歷</a></li>
+                        <li><a href="index.html#課程介紹" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">課程介紹</a></li>
+                        <li><a href="index.html#文章專欄" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">文章專欄</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-6 text-center md:text-left">
+                    <h4 class="text-[#C5A059] tracking-widest uppercase text-sm font-bold font-body">聯絡及預約</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm font-body font-light flex flex-col items-center md:items-start">
+                        <li><a href="https://www.instagram.com/oliver_astrologer/?hl=zh-tw" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="instagram" class="w-4 h-4 text-[#C5A059]"></i> IG 官方帳號</a></li>
+                        <li><a href="https://lin.ee/ZpfHhvF" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="message-circle" class="w-4 h-4 text-[#C5A059]"></i> 官方 LINE</a></li>
+                        <li><a href="https://forms.gle/dCpXTJ2tLuDv14cj6" target="_blank" class="flex items-center gap-3 hover:text-[#C5A059] transition-colors group"><i data-lucide="calendar-days" class="w-4 h-4 text-[#C5A059]"></i> 預約表單</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#C5A059]/10 pt-10 text-center">
+                <p class="text-gray-600 text-[10px] tracking-[0.4em] uppercase font-body">© 2025 Oliver Soul Astrologer. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // 行動版選單切換
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 滑動動畫監聽器
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
