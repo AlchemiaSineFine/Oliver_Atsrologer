@@ -8,6 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 圖片錯誤自動切換 (PNG/JPG 相容腳本) -->
+    <script>
+        function imgFallback(img, placeholder) {
+            if (!img.dataset.retried) {
+                img.dataset.retried = "true";
+                const src = img.getAttribute('src');
+                if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) {
+                    img.src = src.replace(/\.jpe?g$/i, '.png');
+                } else if (src.toLowerCase().endsWith('.png')) {
+                    img.src = src.replace(/\.png$/i, '.jpg');
+                }
+            } else {
+                img.onerror = null;
+                if (placeholder) {
+                    img.src = placeholder;
+                } else {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                }
+            }
+        }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap');
         
@@ -68,16 +92,17 @@
 </head>
 <body class="selection:bg-[#C5A059] selection:text-white">
 
-    <!-- Navigation (連結回首頁對應區塊) -->
+    <!-- Navigation -->
     <nav id="mainNav" class="fixed w-full z-50 transition-all duration-700 py-6 bg-[#0D1A13]/90 backdrop-blur-md border-b border-[#C5A059]/20 nav-scrolled">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
-                <img src="品牌字%20無背景-1.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="this.style.opacity='0'">
+                <img src="logo-transparent.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="imgFallback(this)">
             </a>
             
             <div class="hidden md:flex items-center gap-10">
                 <a href="index.html#關於" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">關於</a>
                 <a href="services.html" class="nav-link text-[#C5A059] text-sm tracking-[0.3em] font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[1px] after:bg-[#C5A059]">服務說明</a>
+                <a href="events.html" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">活動經歷</a>
                 <a href="index.html#課程介紹" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程介紹</a>
                 <a href="index.html#文章專欄" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">文章專欄</a>
                 <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="nav-link text-gray-300 text-sm tracking-[0.3em] hover:text-[#C5A059] transition-all font-serif-elegant relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-[#C5A059] hover:after:w-full after:transition-all">課程預約</a>
@@ -92,6 +117,7 @@
         <div id="mobileMenu" class="hidden md:hidden bg-[#0D1A13] p-6 absolute top-full left-0 w-full border-b border-[#C5A059]/20 flex flex-col gap-6 text-center shadow-2xl">
              <a href="index.html#關於" class="text-white tracking-widest menu-close">關於 Oliver</a>
              <a href="services.html" class="text-[#C5A059] tracking-widest menu-close">服務說明</a>
+             <a href="events.html" class="text-white tracking-widest menu-close">活動經歷</a>
              <a href="index.html#課程介紹" class="text-white tracking-widest menu-close">課程介紹</a>
              <a href="index.html#文章專欄" class="text-white tracking-widest menu-close">文章專欄</a>
              <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="text-white tracking-widest menu-close">近期課程報名</a>
@@ -333,7 +359,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
                 <div class="col-span-1 md:col-span-2 space-y-8 text-center md:text-left">
-                    <img src="品牌字%20無背景-1.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="this.style.display='none'">
+                    <img src="logo-transparent.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="imgFallback(this)">
                     <p class="text-gray-400 max-w-sm leading-loose mx-auto md:mx-0 font-body font-light">
                         將占星學轉化為可落實於生活的指引，<br>
                         在宇宙的脈動中，找回屬於你的節奏。
@@ -344,6 +370,7 @@
                     <ul class="space-y-4 text-gray-400 text-sm font-body font-light">
                         <li><a href="index.html#關於" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">關於 Oliver</a></li>
                         <li><a href="services.html" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">服務項目</a></li>
+                        <li><a href="events.html" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">活動經歷</a></li>
                         <li><a href="index.html#課程介紹" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">課程介紹</a></li>
                         <li><a href="index.html#文章專欄" class="hover:text-[#C5A059] transition-colors inline-block hover:translate-x-1 transform duration-300">文章專欄</a></li>
                     </ul>

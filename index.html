@@ -8,6 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 圖片錯誤自動切換 (PNG/JPG 相容腳本) -->
+    <script>
+        function imgFallback(img, placeholder) {
+            if (!img.dataset.retried) {
+                img.dataset.retried = "true";
+                const src = img.getAttribute('src');
+                if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) {
+                    img.src = src.replace(/\.jpe?g$/i, '.png');
+                } else if (src.toLowerCase().endsWith('.png')) {
+                    img.src = src.replace(/\.png$/i, '.jpg');
+                }
+            } else {
+                img.onerror = null;
+                if (placeholder) {
+                    img.src = placeholder;
+                } else {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                }
+            }
+        }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap');
         
@@ -98,7 +122,7 @@
     <nav id="mainNav" class="fixed w-full z-50 transition-all duration-700 py-6 bg-transparent">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <a href="#" class="flex items-center gap-4 group cursor-pointer">
-                <img src="logo-transparent.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-0 invert" onerror="this.style.opacity='0'">
+                <img src="logo-transparent.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-0 invert" onerror="imgFallback(this)">
             </a>
             
             <div class="hidden md:flex items-center gap-10">
@@ -129,7 +153,7 @@
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden bg-[#0D1A13]">
         <div class="absolute inset-0 z-0">
-            <img src="hero-cover.png" alt="Hero Background" class="w-full h-full object-cover opacity-70" onerror="this.src='hero-cover.jpg'">
+            <img src="hero-cover.png" alt="Hero Background" class="w-full h-full object-cover opacity-70" onerror="imgFallback(this, 'https://placehold.co/1920x1080/0D1A13/C5A059?text=Oliver+Astrologer')">
             <div class="absolute inset-0 bg-[#0D1A13]/50"></div>
         </div>
 
@@ -161,7 +185,7 @@
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div class="relative reveal-left">
                 <div class="aspect-[3/4] bg-[#1A2F23] rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20">
-                    <img src="about-portrait.jpg" alt="Oliver Portrait" class="w-full h-full object-cover opacity-90" onerror="this.src='https://via.placeholder.com/600x800/1A2F23/C5A059?text=Oliver'">
+                    <img src="about-portrait.jpg" alt="Oliver Portrait" class="w-full h-full object-cover opacity-90" onerror="imgFallback(this, 'https://placehold.co/600x800/1A2F23/C5A059?text=Oliver')">
                 </div>
                 <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-[#C5A059] rounded-full flex items-center justify-center text-[#0D1A13] shadow-xl">
                     <i data-lucide="sparkles" class="w-10 h-10"></i>
@@ -203,7 +227,6 @@
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 font-serif-elegant text-center">
-                <!-- Service Cards -->
                 <a href="services.html" class="bg-white p-8 rounded-3xl shadow-sm border border-[#C5A059]/10 hover:shadow-xl transition-all group reveal delay-100 flex flex-col items-center">
                     <div class="p-4 bg-[#0D1A13] text-[#C5A059] rounded-2xl group-hover:scale-110 transition-transform mb-6">
                         <i data-lucide="sun" class="w-6 h-6"></i>
@@ -261,7 +284,7 @@
                     <div class="relative z-10 flex flex-col h-full">
                         <div class="mb-8">
                             <span class="inline-block px-4 py-1 bg-[#C5A059]/10 text-[#C5A059] text-[10px] rounded-full tracking-widest font-bold mb-4 border border-[#C5A059]/30">WORKSHOP</span>
-                            <h3 class="text-3xl font-classical text-[#E5D1A0] mb-4">占星骰工作坊</h3>
+                            <h3 class="text-3xl font-classical text-[#E5D1A0] mb-4">星骰占卜工作坊</h3>
                             <p class="text-gray-400 leading-relaxed font-body font-light">
                                 學習如何運用占星骰子，結合行星、星座與宮位的能量，為日常的疑惑提供快速而直覺的解答。適合占星初學者與對神祕學充滿好奇的靈魂。
                             </p>
@@ -325,7 +348,7 @@
                 </a>
             </div>
             <div class="md:w-[40%] w-full bg-[#2A3B31] p-8 lg:p-12 flex items-center justify-center min-h-[250px]">
-                <img src="brand-alchemia.jpg" alt="ALCHEMIA SINE FINE" class="w-auto h-auto max-h-48 lg:max-h-64 object-contain shadow-2xl rounded-xl" onerror="this.src='https://via.placeholder.com/600/1A2F23/C5A059?text=ALCHEMIA'">
+                <img src="brand-alchemia.jpg" alt="ALCHEMIA SINE FINE" class="w-auto h-auto max-h-48 lg:max-h-64 object-contain shadow-2xl rounded-xl" onerror="imgFallback(this, 'https://placehold.co/600/1A2F23/C5A059?text=ALCHEMIA')">
             </div>
         </div>
     </section>
@@ -335,7 +358,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
                 <div class="col-span-1 md:col-span-2 space-y-8 text-center md:text-left">
-                    <img src="logo-transparent.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="this.style.display='none'">
+                    <img src="logo-transparent.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="imgFallback(this)">
                     <p class="text-gray-400 max-w-sm leading-loose mx-auto md:mx-0 font-body font-light">
                         將占星學轉化為可落實於生活的指引，<br>
                         在宇宙的脈動中，找回屬於你的節奏。
@@ -366,7 +389,7 @@
         </div>
     </footer>
 
-    <!-- Article Modal (沒有圖片版) -->
+    <!-- Article Modal -->
     <div id="articleModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-10">
         <div class="absolute inset-0 bg-[#0D1A13]/90 backdrop-blur-md animate-fade-in" onclick="closeModal()"></div>
         <div class="relative bg-[#F4F1EA] w-full max-w-4xl max-h-[90vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col animate-zoom-in">
@@ -476,7 +499,7 @@
                         <p class="italic text-[#C5A059] mb-8 font-bold">📌 行星、星座、宮位與相位結合在一起，形成你的獨特命盤，也構成你的人生故事！</p>
 
                         <h4 class="text-2xl font-bold text-[#1A2F23] mt-10 mb-4 border-b border-[#C5A059]/30 pb-2">4. 開始你的占星探索</h4>
-                        <p class="mb-6">📌 如果你想開始學習占星，最好的方式就是從你的命盤開始！</p>
+                        <p class="mb-6">📌 如果你想開始學習占星，最好的方式最好是從你的命盤開始！</p>
                         
                         <div class="space-y-6 mb-8">
                             <div class="flex gap-4 items-start bg-white/40 p-4 rounded-xl">
@@ -796,7 +819,7 @@
             }
         ];
 
-        // 渲染文章卡片 (無圖片)
+        // 渲染文章卡片
         const articleGrid = document.getElementById('articleGrid');
         articleGrid.innerHTML = articles.map((art, index) => `
             <div onclick="openModal(${art.id})" class="group cursor-pointer bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#C5A059]/10 flex flex-col h-full reveal ${index === 0 ? 'delay-100' : index === 1 ? 'delay-200' : 'delay-300'}">
@@ -813,7 +836,6 @@
             </div>
         `).join('');
 
-        // 載入 Lucide Icons
         lucide.createIcons();
 
         // 星星背景動畫

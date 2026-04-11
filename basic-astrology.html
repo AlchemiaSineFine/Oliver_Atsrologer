@@ -6,6 +6,30 @@
     <title>現代占星基礎篇 - Oliver 現代占星師</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- 圖片錯誤自動切換 (PNG/JPG 相容腳本) -->
+    <script>
+        function imgFallback(img, placeholder) {
+            if (!img.dataset.retried) {
+                img.dataset.retried = "true";
+                const src = img.getAttribute('src');
+                if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) {
+                    img.src = src.replace(/\.jpe?g$/i, '.png');
+                } else if (src.toLowerCase().endsWith('.png')) {
+                    img.src = src.replace(/\.png$/i, '.jpg');
+                }
+            } else {
+                img.onerror = null;
+                if (placeholder) {
+                    img.src = placeholder;
+                } else {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                }
+            }
+        }
+    </script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -36,19 +60,22 @@
 </head>
 <body class="font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-astro-gold selection:text-astro-dark">
 
+    <!-- 裝飾性背景線條 -->
     <div class="fixed top-0 left-1/2 -translate-x-1/2 w-px h-full bg-astro-gold/10 z-0 hidden md:block"></div>
     <div class="fixed top-1/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
     <div class="fixed top-2/3 left-0 w-full h-px bg-astro-gold/5 z-0"></div>
 
+    <!-- 返回首頁按鈕 -->
     <a href="index.html#課程介紹" class="fixed top-4 left-4 md:top-6 md:left-8 z-[999] flex items-center gap-2 text-[#d1b37b] hover:text-white transition-colors duration-300 font-serif tracking-widest text-sm backdrop-blur-md bg-[#151a22]/80 px-5 py-2.5 rounded-full border border-[#d1b37b]/40 hover:border-[#d1b37b] shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
         <span class="text-xl leading-none mb-0.5">←</span> 返回首頁
     </a>
 
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mt-10 md:mt-0">
 
+        <!-- Header / Hero Section -->
         <header class="flex flex-col items-center text-center mb-32 relative">
             <div class="w-full rounded-2xl md:rounded-[2rem] overflow-hidden border border-astro-gold/20 shadow-[0_0_40px_rgba(209,179,123,0.15)] mb-16 relative">
-                <img src="course-basic-banner.jpg" onerror="this.onerror=null;this.src='https://placehold.co/1200x500/151a22/d1b37b?text=基礎占星學'" alt="課程主視覺" class="w-full h-[35vh] md:h-[45vh] object-cover opacity-90 transition-opacity duration-700 hover:opacity-100">
+                <img src="course-basic-banner.jpg" onerror="imgFallback(this, 'https://placehold.co/1200x500/151a22/d1b37b?text=基礎占星學')" alt="課程主視覺" class="w-full h-[35vh] md:h-[45vh] object-cover opacity-90 transition-opacity duration-700 hover:opacity-100">
                 <div class="absolute inset-0 bg-gradient-to-t from-astro-dark via-transparent to-transparent opacity-90 pointer-events-none"></div>
             </div>
 
@@ -63,6 +90,7 @@
         </header>
 
         <main class="space-y-32">
+            <!-- Module I -->
             <section class="relative group">
                 <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
                     <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
@@ -72,7 +100,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
-                        <img src="course-basic-1.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=星座'" alt="星座原型" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                        <img src="course-basic-1.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/151a22/d1b37b?text=星座')" alt="星座原型" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
                         <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">I</div>
@@ -96,6 +124,7 @@
                 </div>
             </section>
 
+            <!-- Module II -->
             <section class="relative group">
                 <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
                     <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
@@ -105,7 +134,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
-                        <img src="course-basic-2.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=行星'" alt="行星動力" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                        <img src="course-basic-2.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/151a22/d1b37b?text=行星')" alt="行星動力" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
                         <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">II</div>
@@ -129,6 +158,7 @@
                 </div>
             </section>
 
+            <!-- Module III -->
             <section class="relative group">
                 <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
                     <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
@@ -138,7 +168,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
-                        <img src="course-basic-3.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=宮位'" alt="宮位場域" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                        <img src="course-basic-3.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/151a22/d1b37b?text=宮位')" alt="宮位場域" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
                         <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">III</div>
@@ -162,6 +192,7 @@
                 </div>
             </section>
 
+            <!-- Module IV -->
             <section class="relative group">
                 <div class="md:ml-[15%] lg:ml-[20%] mb-8 text-center md:text-left relative z-10">
                     <h3 class="text-2xl md:text-3xl font-serif text-astro-light tracking-widest mb-4">
@@ -171,7 +202,7 @@
                 </div>
                 <div class="flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12 relative z-10">
                     <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border border-astro-gold/30 shrink-0 shadow-[0_0_30px_rgba(209,179,123,0.1)] relative group-hover:border-astro-gold/60 transition-colors duration-500 mt-4 md:mt-0">
-                        <img src="course-basic-4.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/151a22/d1b37b?text=相位'" alt="相位整合" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+                        <img src="course-basic-4.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/151a22/d1b37b?text=相位')" alt="相位整合" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500">
                     </div>
                     <div class="flex-grow flex flex-col md:flex-row items-center md:items-stretch w-full relative">
                         <div class="md:hidden text-8xl font-serif text-astro-gold/10 absolute top-[-50px] right-4 -z-10 pointer-events-none">IV</div>
@@ -208,6 +239,7 @@
                 <span class="text-2xl">⬡</span>
                 <p class="font-serif tracking-widest text-sm uppercase">Oliver Astrologer</p>
             </div>
+            <!-- 報名按鈕 -->
             <a href="https://forms.gle/mu1ssYvos9X2QdH6A" target="_blank" class="px-10 py-3 bg-astro-gold text-astro-dark rounded-full tracking-widest text-sm font-semibold hover:bg-white transition-all">立即報名基礎班</a>
         </footer>
     </div>

@@ -8,6 +8,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- 圖片錯誤自動切換 (PNG/JPG 相容腳本) -->
+    <script>
+        function imgFallback(img, placeholder) {
+            if (!img.dataset.retried) {
+                img.dataset.retried = "true";
+                const src = img.getAttribute('src');
+                if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) {
+                    img.src = src.replace(/\.jpe?g$/i, '.png');
+                } else if (src.toLowerCase().endsWith('.png')) {
+                    img.src = src.replace(/\.png$/i, '.jpg');
+                }
+            } else {
+                img.onerror = null;
+                if (placeholder) {
+                    img.src = placeholder;
+                } else {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                }
+            }
+        }
+    </script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap');
         
@@ -70,7 +94,7 @@
     <nav id="mainNav" class="fixed w-full z-50 transition-all duration-700 py-6 bg-[#0D1A13]/90 backdrop-blur-md border-b border-[#C5A059]/20 nav-scrolled">
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-4 group cursor-pointer">
-                <img src="品牌字%20無背景-1.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="this.style.opacity='0'">
+                <img src="logo-transparent.png" id="navLogo" alt="Oliver Logo" class="h-10 transition-all duration-500 brightness-100" onerror="imgFallback(this)">
             </a>
             
             <div class="hidden md:flex items-center gap-10">
@@ -121,7 +145,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 w-full reveal-left">
                     <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
-                        <img src="event-sol.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=SOL靈性生活節'">
+                        <img src="event-sol.jpg" alt="SOL靈性生活節花絮" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="imgFallback(this, 'https://placehold.co/800x600/1A2F23/C5A059?text=SOL靈性生活節')">
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full space-y-6 reveal-right">
@@ -137,7 +161,7 @@
             <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 w-full reveal-right">
                     <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
-                        <img src="event-class.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=占星課程教學'">
+                        <img src="event-class.jpg" alt="占星課程教學畫面" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="imgFallback(this, 'https://placehold.co/800x600/1A2F23/C5A059?text=占星課程教學')">
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full space-y-6 reveal-left">
@@ -153,7 +177,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 w-full reveal-left">
                     <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
-                        <img src="event-malaysia.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=馬來西亞-靈癒空間'">
+                        <img src="event-malaysia.jpg" alt="馬來西亞靈癒空間活動花絮" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="imgFallback(this, 'https://placehold.co/800x600/1A2F23/C5A059?text=馬來西亞-靈癒空間')">
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full space-y-6 reveal-right">
@@ -169,7 +193,7 @@
             <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 w-full reveal-right">
                     <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
-                        <img src="event-market.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=各市集擺攤紀錄'">
+                        <img src="event-market.jpg" alt="各市集擺攤畫面" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="imgFallback(this, 'https://placehold.co/800x600/1A2F23/C5A059?text=各市集擺攤紀錄')">
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full space-y-6 reveal-left">
@@ -185,7 +209,7 @@
             <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
                 <div class="lg:w-1/2 w-full reveal-left">
                     <div class="aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20 bg-[#1A2F23] flex items-center justify-center">
-                        <img src="event-muqi.jpg" alt="" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="this.src='https://via.placeholder.com/800x600/1A2F23/C5A059?text=駐點占卜-沐憩'">
+                        <img src="event-muqi.jpg" alt="沐憩身體保養所駐點占卜" class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700" onerror="imgFallback(this, 'https://placehold.co/800x600/1A2F23/C5A059?text=駐點占卜-沐憩')">
                     </div>
                 </div>
                 <div class="lg:w-1/2 w-full space-y-6 reveal-right">
@@ -219,7 +243,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
                 <div class="col-span-1 md:col-span-2 space-y-8 text-center md:text-left">
-                    <img src="品牌字%20無背景-1.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="this.style.display='none'">
+                    <img src="logo-transparent.png" alt="Oliver Logo" class="h-12 mx-auto md:mx-0 brightness-110" onerror="imgFallback(this)">
                     <p class="text-gray-400 max-w-sm leading-loose mx-auto md:mx-0 font-body font-light">
                         將占星學轉化為可落實於生活的指引，<br>
                         在宇宙的脈動中，找回屬於你的節奏。

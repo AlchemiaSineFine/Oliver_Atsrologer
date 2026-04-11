@@ -14,6 +14,29 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- 圖片錯誤自動切換 (PNG/JPG 相容腳本) -->
+    <script>
+        function imgFallback(img, placeholder) {
+            if (!img.dataset.retried) {
+                img.dataset.retried = "true";
+                const src = img.getAttribute('src');
+                if (src.toLowerCase().endsWith('.jpg') || src.toLowerCase().endsWith('.jpeg')) {
+                    img.src = src.replace(/\.jpe?g$/i, '.png');
+                } else if (src.toLowerCase().endsWith('.png')) {
+                    img.src = src.replace(/\.png$/i, '.jpg');
+                }
+            } else {
+                img.onerror = null;
+                if (placeholder) {
+                    img.src = placeholder;
+                } else {
+                    img.style.opacity = '0';
+                    img.style.visibility = 'hidden';
+                }
+            }
+        }
+    </script>
+
     <style>
         :root {
             --gold: #c4a484;
@@ -127,7 +150,6 @@
     <!-- 頂部導航 -->
     <nav class="sticky top-0 w-full z-50 bg-[#14181f]/90 backdrop-blur-md py-5 border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <!-- 確保點擊返回首頁對應區塊 -->
             <a href="index.html#課程介紹" class="flex items-center gap-2 text-[10px] tracking-[0.4em] font-bold text-[#c4a484] hover:text-white transition-all group font-cinzel">
                 <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 BACK TO HOME
@@ -165,8 +187,7 @@
                     </p>
                     <div class="flex items-center gap-6">
                         <div class="circle-mask w-16 h-16 flex-shrink-0">
-                            <!-- 加入 onerror 防破圖保護 -->
-                            <img src="course-dice-instructor.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/14181f/c4a484?text=Oliver'" alt="Oliver" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                            <img src="course-dice-instructor.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/14181f/c4a484?text=Oliver')" alt="Oliver" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
                         </div>
                         <div>
                             <p class="text-white font-song tracking-[0.3em] text-sm">現代占星師 Oliver</p>
@@ -201,8 +222,7 @@
                     <div class="flex-grow">
                         <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
                             <div class="circle-mask w-28 h-28 flex-shrink-0">
-                                <!-- 加入 onerror 防破圖保護 -->
-                                <img src="course-dice-core.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/14181f/c4a484?text=Core'" class="w-full h-full object-cover" alt="Basics">
+                                <img src="course-dice-core.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/14181f/c4a484?text=Core')" class="w-full h-full object-cover" alt="Basics">
                             </div>
                             <h3 class="text-3xl font-song text-white tracking-[0.2em]">占星核心理論</h3>
                         </div>
@@ -219,8 +239,7 @@
                     <div class="flex-grow">
                         <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
                             <div class="circle-mask w-28 h-28 flex-shrink-0">
-                                <!-- 加入 onerror 防破圖保護 -->
-                                <img src="course-dice-practice.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/14181f/c4a484?text=Practice'" class="w-full h-full object-cover" alt="Practice">
+                                <img src="course-dice-practice.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/14181f/c4a484?text=Practice')" class="w-full h-full object-cover" alt="Practice">
                             </div>
                             <h3 class="text-3xl font-song text-white tracking-[0.2em]">直覺解碼實作</h3>
                         </div>
@@ -237,8 +256,7 @@
                     <div class="flex-grow">
                         <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
                             <div class="circle-mask w-28 h-28 flex-shrink-0">
-                                <!-- 加入 onerror 防破圖保護 -->
-                                <img src="course-dice-case.jpg" onerror="this.onerror=null;this.src='https://placehold.co/400x400/14181f/c4a484?text=Case'" class="w-full h-full object-cover" alt="Cases">
+                                <img src="course-dice-case.jpg" onerror="imgFallback(this, 'https://placehold.co/400x400/14181f/c4a484?text=Case')" class="w-full h-full object-cover" alt="Cases">
                             </div>
                             <h3 class="text-3xl font-song text-white tracking-[0.2em]">真實個案演練</h3>
                         </div>
